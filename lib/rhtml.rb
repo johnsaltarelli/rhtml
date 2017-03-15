@@ -1,5 +1,2 @@
-require "rhtml/version"
-
-module Rhtml
-  # Your code goes here...
-end
+require 'rhtml/version'
+require 'rhtml/document'
