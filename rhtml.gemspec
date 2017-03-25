@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'rhtml'
   spec.version       = Rhtml::VERSION
   spec.authors       = ['John Saltarelli']
-  spec.email         = ['hello@digitallyft.com']
+  spec.email         = ['john@digitallyft.com']
   spec.summary       = 'A HTML DSL written in Ruby'
   spec.description   = 'A HTML DSL written in Ruby'
   spec.homepage      = 'http://www.digitallyft.com'
