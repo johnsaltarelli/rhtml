@@ -2,6 +2,7 @@ module Rhtml
   class Document
 
     attr_accessor :content
+    alias :out :content
 
     TAGS = [:a, :abbr, :address, :article, :aside, :audio, :b, :base, :bdi, :blockquote, :body, :button, :canvas, :caption,
             :cite, :code, :col, :colgroup, :data, :datalist, :dd, :del, :details, :dfn, :dialog, :div, :dl, :dt, :em, :embed,
@@ -15,7 +16,7 @@ module Rhtml
     def initialize(&block)
       @content = ''
       create_tag_methods
-      instance_eval &block
+      instance_eval &block if block
     end
 
     def create_tag_methods
@@ -27,12 +28,14 @@ module Rhtml
             options = build_options(get_options(args))
             content << "<#{tag}#{options}>"
             content << "#{contents}" if contents
-            instance_eval &block     if block_given?
-            content << "</#{tag}>"   if contents || block_given?
+            instance_eval &block     if block
+            content << "</#{tag}>"   if contents || block
           end
         end
       end
     end
+
+    def t(text); content << text; end
 
     private
 
