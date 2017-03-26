@@ -8,7 +8,7 @@ describe Rhtml do
 
   describe Rhtml::Document do
 
-    it 'creates public tag methods to instance' do
+    it 'creates public tag methods on instance' do
       instance = Rhtml::Document.new
       Rhtml::Document::TAGS.each do |tag|
         expect(instance.respond_to?(tag)).to eq(true)
