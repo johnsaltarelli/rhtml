@@ -1,8 +1,7 @@
-# Rhtml
+# RHTML
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rhtml`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Ruby Gem that allows you to generate an HTML string using a Ruby DSL generated via metaprogramming. 
+Optimized for performance using define_method instead of method_missing?. 
 
 ## Installation
 
@@ -22,7 +21,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+#
+# Inline
+#
+Rhtml::Block.new do 
+  h1 'Welcome to the RHTML Gem Example'
+  p 'Using this DSL you can represent almost any HTML element.'
+  p 'Use HTML attributes as well', class: 'sub-paragraph' 
+  ul class: 'list' do
+    li 'nested elements are also possible'
+    li 'create as many as you like ' do
+      a 'my hyperlink', href: 'http://github.com', target: '_blank'
+    end
+  end
+end.out
+
+# 
+# OR Set to a Variable
+#
+block = Rhtml::Block.new do 
+  p class: 'sub-paragraph' do 
+    t 'my super awesome text without a tag'
+  end
+end
+
+puts block.content
+
+```
 
 ## Development
 
@@ -32,5 +58,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rhtml.
+Bug reports and pull requests are welcome on GitHub at https://github.com/digitallyft/rhtml.
 
