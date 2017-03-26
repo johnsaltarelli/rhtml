@@ -6,18 +6,18 @@ describe Rhtml do
     expect(Rhtml::VERSION).not_to be nil
   end
 
-  describe Rhtml::Block do
+  describe Rhtml::Document do
 
-    it 'adds tag methods to instance' do
-      instance = Rhtml::Block.new
-      Rhtml::Block::TAGS.each do |tag|
+    it 'adds public tag methods to instance' do
+      instance = Rhtml::Document.new
+      Rhtml::Document::TAGS.each do |tag|
         expect(instance.respond_to?(tag)).to eq(true)
       end
     end
 
     it 'generates un-closed HTML tags' do
-      Rhtml::Block::TAGS.each do |tag|
-        block = Rhtml::Block.new do
+      Rhtml::Document::TAGS.each do |tag|
+        block = Rhtml::Document.new do
           send(tag, { class: 'my-class', id: 'my-id-1234' })
         end
         result = "<#{tag} class=\"my-class\" id=\"my-id-1234\">"
@@ -26,8 +26,8 @@ describe Rhtml do
     end
 
     it 'generates closed HTML tags' do
-      Rhtml::Block::TAGS.each do |tag|
-        block = Rhtml::Block.new do
+      Rhtml::Document::TAGS.each do |tag|
+        block = Rhtml::Document.new do
           send(tag, 'some content within a tag', { class: 'my-class', id: 'my-id-1234'})
         end
         result = "<#{tag} class=\"my-class\" id=\"my-id-1234\">some content within a tag</#{tag}>"
@@ -36,7 +36,7 @@ describe Rhtml do
     end
 
     it 'generates nested HTML tags' do
-      output = Rhtml::Block.new do
+      output = Rhtml::Document.new do
         ul do
           li 'This is a test', class: 'my-class', id: 'my-id'
           li 'this is another test', class: 'your-class', id: 'another-id'
@@ -47,7 +47,7 @@ describe Rhtml do
     end
 
     it 'generates nested HTML tags with text' do
-      output = Rhtml::Block.new do
+      output = Rhtml::Document.new do
         p class: 'my-paragraph' do
           text 'my inner text'
         end
