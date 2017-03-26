@@ -25,7 +25,7 @@ Or install it yourself as:
 #
 # Inline
 #
-Rhtml::Block.new do 
+Rhtml::Document.new do 
   h1 'Welcome to the RHTML Gem Example'
   p 'Using this DSL you can represent almost any HTML element.'
   p 'Use HTML attributes as well', class: 'sub-paragraph' 
@@ -40,9 +40,9 @@ end.out
 # 
 # OR Set to a Variable
 #
-block = Rhtml::Block.new do 
+block = Rhtml::Document.new do 
   p class: 'sub-paragraph' do 
-    t 'my super awesome text without a tag'
+    text 'my super awesome text without a tag'
   end
 end
 

@@ -35,7 +35,9 @@ module Rhtml
       end
     end
 
-    def t(text); content << text; end
+    def text(t)
+      content << t
+    end
 
     private
 
